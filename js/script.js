@@ -37,6 +37,7 @@ document.querySelectorAll('.removeCartItem').forEach(button => {
 });
 
 function addToCart(event) {
+    event.preventDefault(); // Impede o comportamento padrão do link
     let button = event.target;
     let box = button.closest('.box');
     let id = box.getAttribute('data-id');
