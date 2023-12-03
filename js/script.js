@@ -61,8 +61,31 @@ function addToCart(event) {
     updateCartTotal();
     updateCartCount();
 
+    // Armazene os itens do carrinho em localStorage
+    storeCartItems();
+
     // Torne o carrinho visível quando um item é adicionado
     cartItem.classList.add('active');
+}
+
+function storeCartItems() {
+    let cartItems = document.querySelectorAll('.cart-item');
+    let cartItemsArray = [];
+
+    cartItems.forEach(cartItem => {
+        let id = cartItem.getAttribute('data-id');
+        let title = cartItem.querySelector('.content h3').innerText;
+        let price = cartItem.querySelector('.content .price').innerText;
+
+        cartItemsArray.push({
+            id: id,
+            title: title,
+            price: price
+        });
+    });
+
+    // Armazene os itens do carrinho em localStorage
+    localStorage.setItem('cartItems', JSON.stringify(cartItemsArray));
 }
 
 function removeCartItem(event) {
